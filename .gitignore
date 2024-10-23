@@ -164,3 +164,4 @@ cython_debug/
 
 #repo files to omit
 deployment_demo/datasets/
+*deployment_demo/model/
