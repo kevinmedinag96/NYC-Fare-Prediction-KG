@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nyc-fare-demo-deployment
+  labels:
+    app: nyc-fare-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nyc-fare-demo
+  template:
+    metadata:
+      labels:
+        app: nyc-fare-demo
+    spec:
+      containers:
+      - name: nyc-fare-app-service
+        image: demomlmodeldepl.azurecr.io/aks-nyc-app-demo:latest # Replace with your ACR image path
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: acr-secret # Make sure you have this secret created
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nyc-fare-demo-service
+spec:
+  selector:
+    app: nyc-fare-demo
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 80
+  type: LoadBalancer
