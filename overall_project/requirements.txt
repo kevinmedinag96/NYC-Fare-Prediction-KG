@@ -1,0 +1,4 @@
+pyarrow
+pyodbc
+pydantic
+azure-identity

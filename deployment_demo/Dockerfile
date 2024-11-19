@@ -15,3 +15,4 @@ COPY ./src /app/src
 CMD [ "uvicorn",  "src.api:app", "--host", "0.0.0.0","--port", "80", "--reload" ]
 #correct cmd in terminal to run container -> docker run --name <cnt-name> -p 8000:80 <img-name>
 
+#in web-> http://localhost:8000
